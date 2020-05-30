@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FastServe 教程</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		* {
+			border: 0;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			color: #444;
+			font-size: 16px;
+			line-height: 1.5em;
+			font-family: arial, sans-serif;
+			background-color: #fff;
+		}
+
+		h2, h4 {
+			margin: 10px 0;
+		}
+
+		#header {
+			padding: 20px;
+			color: #fff;
+			background-color: #393d49;
+		}
+
+		#navbar {
+			position: fixed;
+			top: 200px;
+			right: 5px;
+			width: 120px;
+			padding: 20px;
+			border: 1px solid #ccc;
+			background-color: #fff;
+		}
+
+		.section {
+			margin-top: 20px;
+			padding: 20px;
+			border-left: 8px solid #009688;
+			background-color: #f5f7fa;
+		}
+
+		.explain {
+			padding: 10px;
+			background-color: #ddd;
+		}
+	</style>
+</head>
+<body>
+<!-- 头部区域 -->
+<div id="header">
+	<h1>FastServe 教程</h1>
+</div>
+
+<!-- 导航栏区域 -->
+<!-- <div id="navbar">
+	<a href="#install_">安装使用</a><br>
+</div> -->
+
+<!-- 主体内容区域 -->
+<div id="content">
+	<div class="section" id="install_">
+		<h2>安装使用</h2>
+		<div>
+			直接引入fastserve.js即可
+		</div>
+	</div>
+
+	<div class="section" id="start_">
+		<h2>快速上手</h2>
+		<pre>
+const FastServe = require('./fastserve');
+FastServe.createServer().listen(80);
+		</pre>
+	</div>
+
+	<div class="section" id="config_">
+		<h2>参数设置</h2>
+		<pre>
+const FastServe = require('./fastserve');
+
+/*参数设置*/
+FastServe.config.cache   = false; //取消模板缓存 默认为true
+FastServe.config.maxage  = 0; //取消静态文件缓存 默认值86400
+FastServe.config.static  = './res'; //静态资源目录 默认./static
+FastServe.config.charset = 'utf-8'; //静态资源编码 默认值utf-8
+FastServe.config.encode  = 'utf8'; //动态输出编码 默认值utf8
+FastServe.config.err404  = 'err'; //404错误提示 默认值Not Found
+FastServe.config.https   = false; //是否为https 默认值false
+
+FastServe.createServer().listen(80);
+//FastServe.createServer({...}).listen(80);
+		</pre>
+	</div>
+
+	<div class="section">
+		<h2>响应输出</h2>
+		<pre>
+const FastServe = require('./fastserve');
+
+//响应get请求
+FastServe.get('/hello', (req, res) => {
+	res.html('hello world!');
+});
+
+FastServe.createServer().listen(80);
+		</pre>
+	</div>
+
+</div>
+</body>
+</html>
